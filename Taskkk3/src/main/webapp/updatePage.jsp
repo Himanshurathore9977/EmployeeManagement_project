@@ -17,13 +17,6 @@
 	HttpSession hs=request.getSession();
 		 EmployeeDAO list  =(EmployeeDAO)hs.getAttribute("updateEmployee") ; 
 	%>
-	
-	
-	
-
-
-
-
 
   <div class="container">
   <h2>Update Employee</h2>

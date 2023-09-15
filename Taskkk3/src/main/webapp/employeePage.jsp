@@ -3,7 +3,7 @@
     <%@ page import="java.util.List" %>
     <%@ page import="com.Entity.*" %>
 <!DOCTYPE html>
-<% List<EmployeeDAO>employeeData = (List<EmployeeDAO>)session.getAttribute("employeeData");%>
+<% EmployeeDAO employeeData = (EmployeeDAO)session.getAttribute("employeeData");%>
 <html>
 <head>
 <meta charset="ISO-8859-1">
@@ -32,7 +32,7 @@
             background-color: #ffffff;
         }
     </style>
-<title>Insert title here</title>
+<title>Show Employee Details</title>
 </head>
 <body>
 	<table class="table">
@@ -44,25 +44,27 @@
       <th scope="col">Designation </th> 
       <th scope="col">phone_no</th>
       <th scope="col">password</th>
+      <th scope="col">Update</th>
     </tr>
   </thead>
   <tbody>  
 	
     
-    <% 
-		for(int i=0 ; i<employeeData.size() ; i++){
-	%>
+   
 	<tr>
 		<th scope="row">  </th>	
-		<td><%= employeeData.get(i).getName() %></td> 	
-      	<td><%= employeeData.get(i).getUserID() %></td>
-      	<td><%= employeeData.get(i).getDesignation() %></td>
-      	<td><%= employeeData.get(i).getPhone_no() %></td>
-      	<td><%= employeeData.get(i).getPassword() %></td>
-               	</tr>
-	<%}%>
-    
-    
+		<td><%= employeeData.getName() %></td> 	
+      	<td><%= employeeData.getUserID() %></td>
+      	<td><%= employeeData.getDesignation() %></td>
+      	<td><%= employeeData.getPhone_no() %></td>
+      	<td><%= employeeData.getPassword() %></td>
+      	
+      	<td> <form action="updateEmp" method="post">
+			<button type="submit" name= "updateEmp"  value="Submit">Update</button>
+			</form>	
+		</td>
+    </tr>
+
   </tbody>
   </table>
   

@@ -2,8 +2,8 @@
     pageEncoding="ISO-8859-1"%>
     <%@ page import="java.util.List" %>
     <%@ page import="com.Entity.*" %>
+    <%@ page import="com.service.*" %>
 <!DOCTYPE html>
-<% List<EmployeeDAO>EmployeeDetail = (List<EmployeeDAO>)session.getAttribute("employeeList"); %>
 <html>
 <head>
 <meta charset="ISO-8859-1">
@@ -31,12 +31,25 @@
         tr:nth-child(odd) {
             background-color: #ffffff;
         }
+        h1 {
+    		font-size: 36px; /* Adjust the font size as needed */
+    		font-family: Arial, sans-serif; /* Specify the desired font and fallback fonts */
+    		color: #	007bff; /* Choose your desired text color */
+    		text-align: center; /* Center-align the text */
+		}
+       
+
     </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
+<% List<EmployeeDAO>EmployeeDetail = (List<EmployeeDAO>)session.getAttribute("employeeList"); %>
 
-<%@include file="navigationbar.jsp" %>
+<h1>Admin Page </h1>
+
 	<table class="table">
   <thead>
     <tr>
@@ -92,7 +105,14 @@
     
   </tbody>
   </table>
+  <div align="center">
+  <a class="btn btn-primary" href="addEmployee.jsp" role="button">Add Data</a>
+  <br><br>
+  </div>
+           <div align="center">
+           
   
-  
+  <a class="btn btn-danger" href="logout" role="button">Logout</a>
+           </div>
 </body>
 </html>

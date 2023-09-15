@@ -57,8 +57,7 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
 	}
 
 	/**
@@ -76,19 +75,19 @@ public class LoginServlet extends HttpServlet {
 			pw.write("Login Successfull" ) ; 
 			HttpSession hs=request.getSession();
 	 		hs.setAttribute("name", name);
+	 		hs.setAttribute("employeeList" , employeelist) ; 
 	 		boolean isAdmin = CheckAdmin.checkAdmin(employeelist, name) ; 
 	 		//System.out.println(employeelist.toString());
 	 		//System.out.println(isAdmin);
 	 		if(isAdmin) {		//admin 
 	 			System.out.println("if hai ");
-		 		hs.setAttribute("employeeList" , employeelist) ; 
 	 			RequestDispatcher dispatcher = request.getRequestDispatcher("adminPage.jsp");
 				dispatcher.forward(request , response); 
 	 		}
 	 		else {	//employee 
 	 			System.out.println("else hai ");
 	 			  
-	 			List<EmployeeDAO> employeeData = CheckAdmin.getEmployeeDetails(employeelist, name) ; 
+	 			EmployeeDAO employeeData = CheckAdmin.getEmployeeDetails(employeelist, name) ; 
 		 		hs.setAttribute("employeeData", employeeData ) ;
 		 		System.out.println("ye hua ");
 		 		RequestDispatcher dispatcher = request.getRequestDispatcher("employeePage.jsp");

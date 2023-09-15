@@ -1,7 +1,6 @@
 package com.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -15,16 +14,16 @@ import javax.servlet.http.HttpSession;
 import com.Entity.EmployeeDAO;
 
 /**
- * Servlet implementation class UpdatedServlet2
+ * Servlet implementation class UpdateEmployeeServlet
  */
-@WebServlet("/update2")
-public class UpdatedServlet2 extends HttpServlet {
+@WebServlet("/updateEmp")
+public class UpdateEmployeeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UpdatedServlet2() {
+    public UpdateEmployeeServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,33 +35,21 @@ public class UpdatedServlet2 extends HttpServlet {
 		response.sendRedirect(request.getContextPath()+"/login.jsp");
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		int userid = Integer.parseInt(request.getParameter("userid")) ; 
-		String username = request.getParameter("username") ; 
-		String password  = request.getParameter("password") ; 
-		int phoneno = Integer.parseInt(request.getParameter("phone")) ; 
-		String designation = request.getParameter("isAdmin") ; 
 		
-		HttpSession hs=request.getSession();
-		List <EmployeeDAO> employeeList = (List<EmployeeDAO>)hs.getAttribute("employeeList") ; 
+	
 		
-		employeeList.add( new EmployeeDAO(username , password , userid , phoneno, designation) ); 
-		hs.setAttribute("employeeList", employeeList) ;
+		HttpSession session = request.getSession() ; 
+		EmployeeDAO employeeData  = (EmployeeDAO) session.getAttribute("employeeData") ; 
+		List<EmployeeDAO> employeeList  = (List<EmployeeDAO>) session.getAttribute("employeeList") ; 
+		employeeList.remove(employeeData) ;
+		session.setAttribute("employeeList", employeeList);
 		
 		
-		PrintWriter pw = response.getWriter() ; 
-		pw.write("hello buddy " ); 
-		/*
-		RequestDispatcher dispatcher = request.getRequestDispatcher("adminPage.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("updateEmployeePage.jsp");
 		dispatcher.forward(request , response); 
-		*/
-
-		response.sendRedirect("adminPage.jsp") ; 
-		
 	}
 
 }

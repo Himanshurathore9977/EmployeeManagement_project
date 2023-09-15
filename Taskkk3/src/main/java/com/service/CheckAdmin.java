@@ -19,8 +19,8 @@ public class CheckAdmin {
 			
 	}
 	
-	public static List<EmployeeDAO> getEmployeeDetails(List<EmployeeDAO> employeelist, String name){
-		List<EmployeeDAO> employeeList =employeelist.stream().filter(a -> a.getName().equalsIgnoreCase(name)).collect(Collectors.toList()) ; 
+	public static EmployeeDAO getEmployeeDetails(List<EmployeeDAO> employeelist, String name){
+		EmployeeDAO employeeList =employeelist.stream().filter(a -> a.getName().equalsIgnoreCase(name)).findFirst().orElse(null) ; 
 		//employeelist.stream().forEach(a -> System.out.println(a.getName()));
 		return employeeList; 
 	}
